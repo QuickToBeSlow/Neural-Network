@@ -25,7 +25,7 @@ var npcxvel2 = [];
 var npcyvel2 = [];
 var npcxvel = [];
 var npcyvel = [];
-var npcNum = 10;
+var npcNum = 50;
 
 var bestscore = Infinity;
 var bestindex = 0;
@@ -51,7 +51,7 @@ var summation = 0;
 var index = 0;
 
 //Need neurons that read the current position of the npc!
-for (var i=0; i<10; i++) {
+for (var i=0; i<npcNum; i++) {
     Neurons[i] = [];
 }
 
@@ -282,7 +282,7 @@ var mainloop = setInterval(function() {
     }
     model = Neurons[bestindex];
     Neurons =[];
-    for (var i=0; i<10;i++) {
+    for (var i=0; i<npcNum;i++) {
         Neurons[i] = [];
     }
 
@@ -300,3 +300,29 @@ var mainloop = setInterval(function() {
     }
   }
 }, 1000/30 );
+
+//Quicksort :-)
+
+function quickSort(items, left, right) {
+
+    var ind;
+
+    if (items.length > 1) {
+
+        left = typeof left != "number" ? 0 : left;
+        right = typeof right != "number" ? items.length - 1 : right;
+
+        ind = partition(items, left, right);
+
+        if (left < ind - 1) {
+            quickSort(items, left, ind - 1);
+        }
+
+        if (ind < right) {
+            quickSort(items, ind, right);
+        }
+
+    }
+
+    return items;
+}
